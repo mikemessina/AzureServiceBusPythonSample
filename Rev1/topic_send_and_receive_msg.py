@@ -9,7 +9,7 @@ TOPIC_NAME = "<TOPIC NAME>"
 # create a Service Bus client using the connection string
 servicebus_client = ServiceBusClient.from_connection_string(conn_str=CONNECTION_STR, logging_enable=True)
 
-# Send if servicebus_client have been creted
+# Send if servicebus_client have been created
 with servicebus_client:
     # get a Topic Sender object to send messages to the topic
     sender = servicebus_client.get_topic_sender(topic_name=TOPIC_NAME)
@@ -30,7 +30,7 @@ with servicebus_client:
             sender.send_messages(msg)
             # print ("Send Msg %d of data 'StoreId':'Store%d'" % (i,i))
             # print (msg)
-            
+
 
 print("Done sending messages")
 print("-----------------------")
@@ -39,7 +39,7 @@ print("-----------------------")
 # Receive msg if servicebus_client have been created
 SUBSCRIPTION_NAME = "<SUBSCRIPTION NAME>"
 with servicebus_client:
-    # get the Subscription Receiver object for the subscription    
+    # get the Subscription Receiver object for the subscription
     receiver = servicebus_client.get_subscription_receiver(topic_name=TOPIC_NAME, subscription_name=SUBSCRIPTION_NAME, max_wait_time=10)
     with receiver:
         for msg in receiver:
