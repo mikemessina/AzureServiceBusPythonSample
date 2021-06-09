@@ -1,4 +1,5 @@
 # import os
+# based on https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-python-how-to-use-queues
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 
 CONNECTION_STR = "<NAMESPACE CONNECTION STRING>"

@@ -1,4 +1,8 @@
-#Runs in Powershell using the az cli
+<#
+Runs in Powershell using the az cli
+#Based on https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-cli 
+& https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-tutorial-topics-subscriptions-cli
+#>
 $resourceGroupName = "servicebus-rg"
 $location = "eastus"
 $serviceBusNamespace = "serviceBusNS"
