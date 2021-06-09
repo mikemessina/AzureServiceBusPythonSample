@@ -1,8 +1,8 @@
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 
 # Service bus infomation setting
-CONNECTION_STR = "<NAMESPACE CONNECTION STRING>"
-QUEUE_NAME = "<Queue NAME>"
+CONNECTION_STR = "Endpoint=sb://mwmservicebusns.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=HcIv7f4bPPSvgQo9HDFWPbN9Ef/0Myu3sXt+CBtgREQ="
+QUEUE_NAME = "servicebusqueue"
 
 # Add a method to send a single message
 def send_single_message(sender):

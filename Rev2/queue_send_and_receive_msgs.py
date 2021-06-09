@@ -2,8 +2,8 @@
 # based on https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-python-how-to-use-queues
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 
-CONNECTION_STR = "<NAMESPACE CONNECTION STRING>"
-QUEUE_NAME = "<QUEUE NAME>"
+CONNECTION_STR = "Endpoint=sb://mwmservicebusns.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=HcIv7f4bPPSvgQo9HDFWPbN9Ef/0Myu3sXt+CBtgREQ="
+QUEUE_NAME = "servicebusqueue"
 
 def send_single_message(sender):
     message = ServiceBusMessage("Single Message")

@@ -3,11 +3,21 @@ Runs in Powershell using the az cli
 #Based on https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-cli 
 & https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-tutorial-topics-subscriptions-cli
 #>
+$subName = "mwmais-sub-01"
 $resourceGroupName = "servicebus-rg"
 $location = "eastus"
-$serviceBusNamespace = "serviceBusNS"
+$serviceBusNamespace = "mwmserviceBusNS"
 $serviceBusQueue = "serviceBusQueue"
 $serviceBusTopic = "serviceBusTopic"
+
+$sub = az account show
+if ($sub.name -eq $subName) {
+    az login
+    az account set -s $subName
+}
+else {
+    az account show
+}
 
 #Create RG
 az group create `
@@ -30,7 +40,7 @@ az servicebus queue create `
 az servicebus topic create `
     --resource-group $resourceGroupName `
     --namespace-name $serviceBusNamespace `
-    --name $serviceBusTopic `
+    --name $serviceBusTopic
 
 #Create three new subscriptions (S1-S3)
 az servicebus topic subscription create `
@@ -52,10 +62,9 @@ az servicebus topic subscription create `
     --name S3
 
 #Create Subscription Filters
-
 #Subscription - S1 Filter
 az servicebus topic subscription rule create `
-    --resource-group MyResourceGroup `
+    --resource-group $resourceGroupName `
     --namespace-name $serviceBusNamespace `
     --topic-name $serviceBusTopic `
     --subscription-name S1 `
@@ -64,7 +73,7 @@ az servicebus topic subscription rule create `
 
 #Subscription - S2 Filter
 az servicebus topic subscription rule create `
-    --resource-group MyResourceGroup `
+    --resource-group $resourceGroupName `
     --namespace-name $serviceBusNamespace `
     --topic-name $serviceBusTopic `
     --subscription-name S2 `
@@ -73,7 +82,7 @@ az servicebus topic subscription rule create `
 
 #Subscription - S3 Filter
 az servicebus topic subscription rule create `
-    --resource-group MyResourceGroup `
+    --resource-group $resourceGroupName `
     --namespace-name $serviceBusNamespace `
     --topic-name $serviceBusTopic `
     --subscription-name S3 `

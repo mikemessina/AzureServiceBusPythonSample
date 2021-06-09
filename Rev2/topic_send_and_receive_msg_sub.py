@@ -1,9 +1,9 @@
 #based on https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-python-how-to-use-topics-subscriptions
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 
-CONNECTION_STR = "<NAMESPACE CONNECTION STRING>"
-TOPIC_NAME = "<TOPIC NAME>"
-SUBSCRIPTION_NAME = "<SUBSCRIPTION NAME>"
+CONNECTION_STR = "Endpoint=sb://mwmservicebusns.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=HcIv7f4bPPSvgQo9HDFWPbN9Ef/0Myu3sXt+CBtgREQ="
+TOPIC_NAME = "servicebustopic"
+SUBSCRIPTION_NAME = "S2"
 
 def send_single_message(sender):
     message = ServiceBusMessage("Single Message")

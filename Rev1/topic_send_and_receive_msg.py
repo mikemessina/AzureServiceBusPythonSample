@@ -2,8 +2,8 @@ from azure.servicebus import ServiceBusClient, ServiceBusMessage
 from random import randint, choice
 
 # Service bus infomation setting
-CONNECTION_STR = "<NAMESPACE CONNECTION STRING>"
-TOPIC_NAME = "<TOPIC NAME>"
+CONNECTION_STR = "Endpoint=sb://mwmservicebusns.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=HcIv7f4bPPSvgQo9HDFWPbN9Ef/0Myu3sXt+CBtgREQ="
+TOPIC_NAME = "servicebustopic"
 
 # Create a Service Bus client and then a topic sender object to send messages
 # create a Service Bus client using the connection string
@@ -37,7 +37,30 @@ print("-----------------------")
 
 # Recieve msg for subscription
 # Receive msg if servicebus_client have been created
-SUBSCRIPTION_NAME = "<SUBSCRIPTION NAME>"
+SUBSCRIPTION_NAME = "S1"
+print("Showing details of Subscription - " + SUBSCRIPTION_NAME)
+with servicebus_client:
+    # get the Subscription Receiver object for the subscription
+    receiver = servicebus_client.get_subscription_receiver(topic_name=TOPIC_NAME, subscription_name=SUBSCRIPTION_NAME, max_wait_time=10)
+    with receiver:
+        for msg in receiver:
+            print("Received: " + str(msg.application_properties))
+            # complete the message so that the message is removed from the subscription
+            receiver.complete_message(msg)
+
+SUBSCRIPTION_NAME = "S2"
+print("Showing details of Subscription - " + SUBSCRIPTION_NAME)
+with servicebus_client:
+    # get the Subscription Receiver object for the subscription
+    receiver = servicebus_client.get_subscription_receiver(topic_name=TOPIC_NAME, subscription_name=SUBSCRIPTION_NAME, max_wait_time=10)
+    with receiver:
+        for msg in receiver:
+            print("Received: " + str(msg.application_properties))
+            # complete the message so that the message is removed from the subscription
+            receiver.complete_message(msg)
+
+SUBSCRIPTION_NAME = "S3"
+print("Showing details of Subscription - " + SUBSCRIPTION_NAME)
 with servicebus_client:
     # get the Subscription Receiver object for the subscription
     receiver = servicebus_client.get_subscription_receiver(topic_name=TOPIC_NAME, subscription_name=SUBSCRIPTION_NAME, max_wait_time=10)
